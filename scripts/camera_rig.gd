@@ -19,9 +19,6 @@ func _enter_tree() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if !is_multiplayer_authority():
-		return
-	
 	var look_input := Input.get_vector("view_right", "view_left", "view_down", "view_up")
 	look_input = stick_sensitivity * look_input * delta
 	look_input += mouse_input
@@ -40,7 +37,4 @@ func _input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(_delta: float) -> void:
-	if !is_multiplayer_authority():
-		return
-	
 	position = player.position + Vector3(0,camera_rig_height,0)

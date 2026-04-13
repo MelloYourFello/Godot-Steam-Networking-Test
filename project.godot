@@ -11,14 +11,13 @@ config_version=5
 [application]
 
 config/name="Wizards of Whimsy"
-run/main_scene="uid://d3amors8adqo7"
+run/main_scene="uid://bh0bh7463vkvg"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 SteamSetup="*uid://kyfgeuso36pr"
-ServerSetup="*uid://brv5hbkvq3oa1"
 
 [editor_plugins]
 

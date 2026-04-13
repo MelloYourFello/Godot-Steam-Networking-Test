@@ -7,8 +7,11 @@ var lobby_members_max: int = 10
 var is_host: bool = false
 var is_joining: bool = false
 
-var player_scene = preload("uid://d3amors8adqo7")
-var main_scene = "res://scenes/main.tscn"
+@export var player_scene: PackedScene
+
+@onready var host_button: Button = $VBoxContainer/HostButton
+@onready var join_button: Button = $VBoxContainer/JoinButton
+@onready var lobby_id_prompt: LineEdit = $VBoxContainer/LobbyIDPrompt
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,7 +20,6 @@ func _ready() -> void:
 	Steam.lobby_joined.connect(on_lobby_joined)
 
 func host_lobby():
-	get_tree().change_scene_to_file(main_scene)
 	Steam.createLobby(Steam.LobbyType.LOBBY_TYPE_PUBLIC, lobby_members_max)
 	
 	is_host = true
@@ -31,6 +33,7 @@ func on_lobby_created(result: int, created_lobby_id: int):
 		peer.server_relay = true
 		peer.create_host()
 		
+		
 		multiplayer.multiplayer_peer = peer
 		multiplayer.peer_connected.connect(remove_player)
 		add_player()
@@ -38,7 +41,6 @@ func on_lobby_created(result: int, created_lobby_id: int):
 		print("Lobby Created, Lobby ID: ", lobby_id)
 
 func join_lobby(lobby_id_to_join: int):
-	get_tree().change_scene_to_file(main_scene)
 	is_joining = true
 	Steam.joinLobby(lobby_id_to_join)
 
@@ -65,3 +67,14 @@ func remove_player(id: int):
 		return
 	
 	get_node(str(id)).queue_free()
+
+func _on_host_button_pressed() -> void:
+	host_lobby()
+	visible = false
+
+func _on_lobby_id_prompt_text_changed(new_text: String) -> void:
+	join_button.disabled = (new_text.length() == 0)
+
+func _on_join_button_pressed() -> void:
+	join_lobby(lobby_id_prompt.text.to_int())
+	visible = false

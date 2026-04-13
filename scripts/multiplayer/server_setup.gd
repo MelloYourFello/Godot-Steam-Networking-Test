@@ -35,7 +35,8 @@ func on_lobby_created(result: int, created_lobby_id: int):
 		
 		
 		multiplayer.multiplayer_peer = peer
-		multiplayer.peer_connected.connect(remove_player)
+		multiplayer.peer_connected.connect(add_player)
+		multiplayer.peer_disconnected.connect(remove_player)
 		add_player()
 		
 		print("Lobby Created, Lobby ID: ", lobby_id)

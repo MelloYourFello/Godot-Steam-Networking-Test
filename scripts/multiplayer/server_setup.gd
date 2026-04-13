@@ -17,22 +17,18 @@ var is_joining: bool = false
 func _ready() -> void:
 	Steam.initRelayNetworkAccess()
 	Steam.lobby_created.connect(on_lobby_created)
-	Steam.lobby_joined.connect(on_lobby_joined)
 
 func host_lobby():
 	Steam.createLobby(Steam.LobbyType.LOBBY_TYPE_PUBLIC, lobby_members_max)
-	
 	is_host = true
 
 func on_lobby_created(result: int, created_lobby_id: int):
 	if result == Steam.Result.RESULT_OK:
-		
 		lobby_id = created_lobby_id
 		
 		peer = SteamMultiplayerPeer.new()
 		peer.server_relay = true
 		peer.create_host()
-		
 		
 		multiplayer.multiplayer_peer = peer
 		multiplayer.peer_connected.connect(add_player)

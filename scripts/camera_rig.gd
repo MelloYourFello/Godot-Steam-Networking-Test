@@ -13,10 +13,6 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	spring_length = camera.position.z
 
-func _enter_tree() -> void:
-	set_multiplayer_authority(name.to_int())
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var look_input := Input.get_vector("view_right", "view_left", "view_down", "view_up")

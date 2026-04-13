@@ -17,6 +17,7 @@ var is_joining: bool = false
 func _ready() -> void:
 	Steam.initRelayNetworkAccess()
 	Steam.lobby_created.connect(on_lobby_created)
+	Steam.lobby_joined.connect(on_lobby_joined)
 
 func host_lobby():
 	Steam.createLobby(Steam.LobbyType.LOBBY_TYPE_PUBLIC, lobby_members_max)

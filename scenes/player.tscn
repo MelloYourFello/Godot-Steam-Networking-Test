@@ -8,11 +8,6 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qhqgy"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qhqgy"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-
 [node name="Player" type="CharacterBody3D" unique_id=505707154]
 script = ExtResource("1_3vyb7")
 
@@ -20,13 +15,13 @@ script = ExtResource("1_3vyb7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_g2els")
 
-[node name="CameraRig" type="SpringArm3D" parent="." unique_id=1586295189]
+[node name="CameraRig" type="SpringArm3D" parent="." unique_id=1509071363]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.365, 0)
 top_level = true
 shape = SubResource("SphereShape3D_qhqgy")
 script = ExtResource("2_qhqgy")
 
-[node name="Camera3D" type="Camera3D" parent="CameraRig" unique_id=2061125024]
+[node name="Camera3D" type="Camera3D" parent="CameraRig" unique_id=909949220]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
 [node name="hero_male" parent="." unique_id=1632891953 instance=ExtResource("2_g2els")]
@@ -70,8 +65,5 @@ autoplay = &"freehand_idle"
 
 [node name="Label3D" type="Label3D" parent="." unique_id=2051470096]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1269696, 0)
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1904771321]
-replication_config = SubResource("SceneReplicationConfig_qhqgy")
 
 [editable path="hero_male"]

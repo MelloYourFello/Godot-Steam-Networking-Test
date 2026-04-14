@@ -1,4 +1,4 @@
-extends Control
+extends Node3D
 
 var lobby_id: int = 0
 var peer: SteamMultiplayerPeer
@@ -7,12 +7,12 @@ var lobby_members_max: int = 10
 var is_host: bool = false
 var is_joining: bool = false
 
-const PLAYER = preload("uid://dwelg42bqxhl")
+@export var player_scene: PackedScene
 
-@onready var host_button: Button = $VBoxContainer/HostButton
-@onready var join_button: Button = $VBoxContainer/JoinButton
-@onready var lobby_id_prompt: LineEdit = $VBoxContainer/LobbyIDPrompt
-@onready var multiplayer_spawner: MultiplayerSpawner = $"../MultiplayerSpawner"
+
+@onready var host_button: Button = $ServerSetup/VBoxContainer/HostButton
+@onready var join_button: Button = $ServerSetup/VBoxContainer/JoinButton
+@onready var lobby_id_prompt: LineEdit = $ServerSetup/VBoxContainer/LobbyIDPrompt
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -57,9 +57,9 @@ func on_lobby_joined(joined_lobby_id: int, permissions: int, locked: bool, respo
 	is_joining = false
 
 func add_player(id: int = 1):
-	var player = PLAYER.instantiate()
+	var player = player_scene.instantiate()
 	player.name = str(id)
-	add_child(player, true)
+	call_deferred("add_child", player)
 
 func remove_player(id: int):
 	if !has_node(str(id)):
@@ -69,11 +69,11 @@ func remove_player(id: int):
 
 func _on_host_button_pressed() -> void:
 	host_lobby()
-	visible = false
+	$ServerSetup.visible = false
 
 func _on_lobby_id_prompt_text_changed(new_text: String) -> void:
 	join_button.disabled = (new_text.length() == 0)
 
 func _on_join_button_pressed() -> void:
 	join_lobby(lobby_id_prompt.text.to_int())
-	visible = false
+	$ServerSetup.visible = false

@@ -7,11 +7,12 @@ var lobby_members_max: int = 10
 var is_host: bool = false
 var is_joining: bool = false
 
-@export var player_scene: PackedScene
+const PLAYER = preload("uid://dwelg42bqxhl")
 
 @onready var host_button: Button = $VBoxContainer/HostButton
 @onready var join_button: Button = $VBoxContainer/JoinButton
 @onready var lobby_id_prompt: LineEdit = $VBoxContainer/LobbyIDPrompt
+@onready var multiplayer_spawner: MultiplayerSpawner = $"../MultiplayerSpawner"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -56,9 +57,9 @@ func on_lobby_joined(joined_lobby_id: int, permissions: int, locked: bool, respo
 	is_joining = false
 
 func add_player(id: int = 1):
-	var player = player_scene.instantiate()
+	var player = PLAYER.instantiate()
 	player.name = str(id)
-	call_deferred("add_child", player)
+	add_child(player, true)
 
 func remove_player(id: int):
 	if !has_node(str(id)):

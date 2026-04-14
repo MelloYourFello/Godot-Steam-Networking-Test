@@ -4,7 +4,7 @@ extends CharacterBody3D
 const JUMP_VELOCITY = 4.5
 
 @onready var camera: Camera3D = $CameraRig/Camera3D
-@onready var label_3d: Label3D = $Label3D
+@onready var label_3d: Label3D = $Label3D 
 
 func _ready() -> void:
 	label_3d.text = Steam.getPersonaName()

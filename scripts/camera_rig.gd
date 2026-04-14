@@ -12,16 +12,12 @@ var camera_rig_height: float = position.y
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	spring_length = camera.position.z
-
-func _enter_tree() -> void:
-	set_multiplayer_authority(name.to_int())
+	
+	if is_multiplayer_authority():
+		camera.make_current()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
-	if is_multiplayer_authority():
-		return
-	
 	var look_input := Input.get_vector("view_right", "view_left", "view_down", "view_up")
 	look_input = stick_sensitivity * look_input * delta
 	look_input += mouse_input

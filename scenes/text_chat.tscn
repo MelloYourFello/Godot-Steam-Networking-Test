@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dqwck34f1tvev"]
+
+[ext_resource type="Script" uid="uid://ddiabqohvscjl" path="res://scripts/multiplayer/text_chat.gd" id="1_xhu75"]
+
+[node name="TextChat" type="Control" unique_id=1817575949]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xhu75")
+
+[node name="LineEdit" type="LineEdit" parent="." unique_id=731605902]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 159.0
+grow_vertical = 0
+placeholder_text = "Type Message Here"
+expand_to_text_length = true

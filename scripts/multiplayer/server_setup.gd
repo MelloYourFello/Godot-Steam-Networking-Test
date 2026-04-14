@@ -1,5 +1,8 @@
 extends Node3D
 
+const PACKET_READ_LIMIT: int = 32
+
+var lobby_data
 var lobby_id: int = 0
 var peer: SteamMultiplayerPeer
 var lobby_members: Array = []
@@ -8,8 +11,6 @@ var is_host: bool = false
 var is_joining: bool = false
 
 @export var player_scene: PackedScene
-
-
 @onready var host_button: Button = $ServerSetup/VBoxContainer/HostButton
 @onready var join_button: Button = $ServerSetup/VBoxContainer/JoinButton
 @onready var lobby_id_prompt: LineEdit = $ServerSetup/VBoxContainer/LobbyIDPrompt

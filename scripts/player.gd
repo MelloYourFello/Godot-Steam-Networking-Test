@@ -4,10 +4,10 @@ extends CharacterBody3D
 const JUMP_VELOCITY = 4.5
 
 @onready var camera: Camera3D = $CameraRig/Camera3D
-@onready var label_3d: Label3D = $Label3D 
+@onready var name_plate: Label3D = $NamePlate
 
 func _ready() -> void:
-	label_3d.text = Steam.getPersonaName()
+	name_plate.text = Steam.getPersonaName()
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())

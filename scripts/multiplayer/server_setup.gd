@@ -1,8 +1,5 @@
 extends Node3D
 
-const PACKET_READ_LIMIT: int = 32
-
-var lobby_data
 var lobby_id: int = 0
 var peer: SteamMultiplayerPeer
 var lobby_members: Array = []

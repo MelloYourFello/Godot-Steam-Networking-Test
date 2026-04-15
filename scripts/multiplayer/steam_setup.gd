@@ -7,7 +7,6 @@ func _ready() -> void:
 func initialize_steam() -> void:
 	var initialize_response: Dictionary = Steam.steamInitEx()
 	print("Did Steam Initialize?: %s " % initialize_response)
-	
 
 func _init() -> void:
 	# Sets App ID

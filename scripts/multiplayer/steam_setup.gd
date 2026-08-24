@@ -5,7 +5,7 @@ func _ready() -> void:
 	initialize_steam()
 
 func initialize_steam() -> void:
-	var initialize_response: Dictionary = Steam.steamInitEx()
+	var initialize_response: Dictionary = Steam.steamInitEx(480, true)
 	print("Did Steam Initialize?: %s " % initialize_response)
 
 func _init() -> void:
@@ -15,4 +15,4 @@ func _init() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	Steam.run_callbacks() #Enables Callbacks
+	Steam.run_callbacks() # Enables Callbacks
